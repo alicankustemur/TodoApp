@@ -1,0 +1,44 @@
+li.ui-state-default {
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+li.ui-state-default:last-child {
+    border-bottom: none;
+}
+
+.todo-footer {
+    background-color: #F4FCE8;
+    padding: 10px 20px;
+    margin: 15px -20px -10px;
+}
+
+#checkAll {
+    margin-top: 10px;
+}
+
+.logout-button {
+    position: relative;
+    margin-top: 10px;
+    float: right;
+    margin-left: 10px;
+}
+
+.todo-list a {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.todo-list button {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.todo-list label {
+    margin-top: 10px;
+}
+
+.todo-list input {
+    margin-top: 10px;
+}

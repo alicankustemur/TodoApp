@@ -1,0 +1,33 @@
+<div xmlns:th="http://www.thymeleaf.org" class="col-md-6">
+    <div class="form-structure">
+        <h1>Giriş</h1>
+        <form th:action="@{/login}" method="post">
+            <table class="form" align="center">
+                <tr>
+                    <td>
+                        <input type="text" name="username" placeholder="Kullanıcı Adı" class="form-control"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" name="password" placeholder="Şifre" class="form-control"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <button type="submit" class="btn btn-success">
+                            <i class="glyphicon glyphicon-log-in"></i> Giriş
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div th:if="${loginMessage}" class="alert alert-danger" role="alert">
+                            <p th:text="${loginMessage}"></p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

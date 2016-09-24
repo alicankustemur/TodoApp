@@ -1,0 +1,61 @@
+<div xmlns:th="http://www.thymeleaf.org" class="col-md-6">
+    <div class="form-structure">
+        <h1>Kayıt Ol</h1>
+        <form th:action="@{/addUser}" method="post" th:object="${user}">
+            <table align="center" class="form">
+                <tr>
+                    <td>
+                        <input type="text" name="username" class="form-control" placeholder="Kullanıcı Adı"/>
+                        <div th:if="${#fields.hasErrors('username')}" class="alert alert-danger" role="alert">
+                            <p th:errors="*{username}"></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="email" class="form-control" placeholder="Mail Adresi"/>
+                        <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger" role="alert">
+                            <p th:errors="*{email}"></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" name="password" class="form-control" placeholder="Şifre"/>
+                        <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger" role="alert">
+                            <p th:errors="*{password}"></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="phoneNumber" class="form-control" placeholder="Cep Telefonu"/>
+                        <div th:if="${#fields.hasErrors('phoneNumber')}" class="alert alert-danger"
+                             role="alert">
+                            <p th:errors="*{phoneNumber}"></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-save"></i> Kayıt Ol
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div th:if="${success} == true" class="alert alert-success" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Kaydınız başarılı ile oluşturuldu.
+                        </div>
+                        <div th:if="${success}==false" class="alert alert-danger" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            Böyle bir kullanıcı zaten var.
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

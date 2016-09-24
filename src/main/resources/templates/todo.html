@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head   >
+    <title>Todo App</title>
+    <meta charset="UTF-8"/>
+    <script src="../static/js/jquery-3.1.0.min.js" th:src="@{../static/js/jquery-3.1.0.min.js}"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.1/css/bootstrap.min.css" media="screen"/>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{../static/css/style.css}"/>
+    <link rel="stylesheet" href="../static/css/todo.css" th:href="@{../static/css/todo.css}"/>
+    <script src="webjars/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="../static/js/todo.js" th:src="@{../static/js/todo.js}"></script>
+</head>
+<body>
+<div th:include="layout/nav-bar"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-structure">
+                <h1>Yapılacaklar</h1>
+                <table align="center">
+                    <form th:action="@{/addTodo}" method="post" th:object="${todo}">
+                        <tr>
+                            <td>
+                                <input type="text" name="todoName" class="form-control"
+                                       placeholder="Yapılacak birşeyler ekle.."/>
+                            </td>
+                            <td>
+                                <button style="margin-left:10px" class="btn btn-primary  add-todo" type="submit">
+                                    <i class="glyphicon glyphicon-plus"></i> Ekle
+                                </button>
+                            </td>
+                        </tr>
+                    </form>
+                    <tr>
+                        <td>
+                            <a href="/deleteAllTodos" id="checkAll" class="btn btn-success"><i
+                                    class="glyphicon glyphicon-thumbs-down"></i> Hepsi
+                                tamamlandı.
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="todo-list" th:each="todo : ${todoList}">
+                        <form th:action="@{/updateTodo}" method="post">
+                            <td>
+                                <input name="id" type="hidden" th:value="${todo.id}"/>
+                                <label th:if="${todo.updatable} == false" th:text="${todo.todoName}"/>
+                                <input th:if="${todo.updatable}" name="todoName" class="form-control" th:value="${todo.todoName}"/>
+                            </td>
+                            <td>
+                                <a th:href="@{'/deleteTodo/'+${todo.id}}" type="submit" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-remove"></i> Sil
+                                </a>
+                            </td>
+                            <td>
+                                <a th:if="${todo.updatable} == false" th:href="@{'/updatable/'+${todo.id}}" class="btn btn-primary">
+                                    <i class="glyphicon glyphicon-transfer"></i> Güncelle
+                                </a>
+                                <button th:if="${todo.updatable}" type="submit" class="btn btn-primary">
+                                    <i class="glyphicon glyphicon-transfer"></i> Güncelle
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="todo-footer">
+                                <strong th:text="${todoListSize}+' '+${todoMessage}"><span
+                                        class="count-todos"></span></strong>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
